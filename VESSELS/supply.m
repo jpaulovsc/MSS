@@ -24,6 +24,7 @@ function [xdot, U] = supply(x,tau)
 %             12 October 2011 - Corrected T and Tinv, which were switched 
 %             27 May 2019 - Added U as ouput
 %             31 May 2019 - Included the rotation matrix in yaw
+%             23 April 2020 - Corrected the psi angle index in line 51.
 
 % Normalization variables
 L    =  76.2;           % length of ship (m)
@@ -47,7 +48,7 @@ Dbis = [0.0358        0        0
  if (length(x)  ~= 6),error('x-vector must have dimension 6 !');end
  if (length(tau) ~= 3),error('u-vector must have dimension 3 !');end
  
- psi = x(6);
+ psi = x(3);
  R = [cos(psi) -sin(psi) 0
       sin(psi)  cos(psi) 0
             0         0  1 ];
